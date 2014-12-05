@@ -8,12 +8,20 @@ Install
 =======
 .. code-block:: bash
 
-    $ pip install slacker
+    $ pip install changetip
 
 
 Examples
 ========
-TODO
+
+.. code-block:: python
+    from changetip.bots.base import BaseBot
+
+    class YourBot(BaseBot):
+
+        def check_for_new_tips(self)
+            # Code to check for new tips
+            pass
 
 
 Tests
