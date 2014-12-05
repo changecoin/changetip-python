@@ -2,7 +2,7 @@
 ChangeTip Python Library
 ========================
 
-A set of tools for interacting with the [ChangeTip](https://www.changetip.com) API.
+A set of tools for interacting with the ChangeTip API - https://www.changetip.com/api/
 
 Install
 =======
