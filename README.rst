@@ -25,6 +25,7 @@ CircleCI test status:
 
 
 To run tests:
+
 .. code-block:: bash
 
     $ python setup.py test
