@@ -15,6 +15,7 @@ Examples
 ========
 
 .. code-block:: python
+
     from changetip.bots.base import BaseBot
 
     class YourBot(BaseBot):
