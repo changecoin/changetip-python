@@ -15,7 +15,7 @@ setup(
     author='ChangeCoin, Inc.',
     author_email='oss@changecoin.com',
     license='MIT',
-    install_requires=['requests'],
+    install_requires=['requests==2.1.0'],
     test_suite='nose.collector',
     tests_require=['nose'],
     packages=[
