@@ -17,4 +17,4 @@ setup(name='changetip',
       install_requires=['requests'],
       test_suite='nose.collector',
       tests_require=['nose'],
-      packages=['changetip'])
+      packages=['changetip', 'changetip.bots'])
