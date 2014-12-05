@@ -9,7 +9,7 @@ A set of tools for interacting with the [ChangeTip](https://www.changetip.com) A
 TODO
 
 ## Tests
-TODO
+`python setup.py test`
 
 ## License
 SEE [LICENSE](LICENSE)
