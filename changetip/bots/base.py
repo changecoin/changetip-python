@@ -1,11 +1,13 @@
 # coding=utf-8
-import settings
 import logging
 import json
 import re
 import requests
 
 logger = logging.getLogger(__name__)
+
+
+CHANGECOIN_API = "https://api.changetip.com/v1"
 
 
 class BaseBot(object):
@@ -75,7 +77,7 @@ class BaseBot(object):
 
     def get_api_url(self, path):
         assert self.changetip_api_key is not None, "changetip_api_key must be defined"
-        return "%s%s?api_key=%s" % (settings.CHANGECOIN_API, path, self.changetip_api_key)
+        return "%s%s?api_key=%s" % (CHANGECOIN_API, path, self.changetip_api_key)
 
     def start_transaction(self, sender, receiver, message, context_uid, meta):
         """ Send data to the changecoin API """
