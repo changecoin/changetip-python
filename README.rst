@@ -18,8 +18,11 @@ TODO
 
 Tests
 =====
+CircleCI test status:
+
 .. image:: https://circleci.com/gh/changecoin/changetip-python.svg?style=svg
     :target: https://circleci.com/gh/changecoin/changetip-python
+
 
 .. code-block:: bash
 
