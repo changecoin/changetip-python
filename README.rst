@@ -24,6 +24,7 @@ CircleCI test status:
     :target: https://circleci.com/gh/changecoin/changetip-python
 
 
+To run tests:
 .. code-block:: bash
 
     $ python setup.py test
