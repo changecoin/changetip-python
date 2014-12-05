@@ -1,16 +1,16 @@
 from setuptools import setup
 
 setup(name='changetip',
-      version='0.0.1',
+      version='0.0.2',
       description='ChangeTip helper library',
-      url='http://github.com/storborg/funniest',
-      long_description=open("README.md").read(),
+      url='https://github.com/changecoin/changetip-python',
       classifiers=[
-          'Development Status :: 3 - Alpha',
+          'Development Status :: 2 - Pre-Alpha',
           'License :: OSI Approved :: MIT License',
-          'Programming Language :: Python :: 2.7',
-          'Topic :: Text Processing :: Linguistic',
+          'Programming Language :: Python',
+          'Intended Audience :: Developers'
       ],
+      keywords=['changetip', 'changecoin', 'bitcoin', 'tipping', 'micropayments'],
       author='ChangeCoin, Inc.',
       author_email='oss@changecoin.com',
       license='MIT',

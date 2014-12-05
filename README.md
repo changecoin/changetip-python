@@ -12,4 +12,4 @@ TODO
 `python setup.py test`
 
 ## License
-SEE [LICENSE](LICENSE)
+MIT
