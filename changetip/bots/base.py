@@ -1,13 +1,14 @@
 # coding=utf-8
 import logging
 import json
+import os
 import re
 import requests
 
 logger = logging.getLogger(__name__)
 
 
-CHANGECOIN_API = "https://api.changetip.com/v1"
+CHANGECOIN_API = os.getenv("CHANGECOIN_API", "https://api.changetip.com/v1")
 
 
 class BaseBot(object):
