@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='changetip',
-    version='0.1.0',
+    version='0.1.1',
     description='ChangeTip helper library',
     url='https://github.com/changecoin/changetip-python',
     classifiers=[

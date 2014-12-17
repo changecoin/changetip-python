@@ -39,6 +39,14 @@ To run tests:
 
     $ python setup.py test
 
+Local Development
+=================
+If you would like to post API messages locally instead of production (https://api.changetip.com/v1), you can pass the environemnt variable `CHANGECOIN_API`. For example:
+
+.. code-block:: bash
+
+    $ CHANGECOIN_API=http://localhost/v1/ python yourcode
+
 
 License
 =======
