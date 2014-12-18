@@ -37,6 +37,10 @@ class BaseBot(object):
     def mention(self, username):
         return '%s%s' % (self.prefix, username)
 
+    def dupecheck(self, context_uid):
+        """ Check locally for duplicates before submitting """
+        return True
+
     def check_for_new_tips(self, last):
         """ Poll the site for new tips. Expected to return an array of tips, in the format passed to handle_tip """
         raise NotImplementedError
