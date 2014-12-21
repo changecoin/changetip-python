@@ -11,6 +11,10 @@ logger = logging.getLogger(__name__)
 CHANGECOIN_API = os.getenv("CHANGECOIN_API", "https://api.changetip.com/v1")
 
 
+class DuplicateTipException(Exception):
+    pass
+
+
 class BaseBot(object):
 
     # Override this with the name of the channel.Must have correspond
@@ -38,18 +42,31 @@ class BaseBot(object):
         return '%s%s' % (self.prefix, username)
 
     def dupecheck(self, context_uid):
-        """ Check locally for duplicates before submitting """
+        """ Check locally for duplicates before submitting
+        Should raise a DuplicateTipException if duplicate is found
+        """
         return True
 
     def check_for_new_tips(self, last):
-        """ Poll the site for new tips. Expected to return an array of tips, in the format passed to handle_tip """
+        """ Poll the site for new tips. Expected to return an array of tips, in the format passed to send_tip """
         raise NotImplementedError
 
-    def handle_tip(self, sender, receiver, message, context_uid, meta):
-        """ Once a new tip is found, do the work. Returns the response from start_transaction """
-        self.last_context_uid = context_uid
-        self.dupecheck(context_uid)
-        return self.start_transaction(sender, receiver, message, context_uid, meta)
+    def send_tip(self, sender, receiver, message, context_uid, meta):
+        """ Send a request to the ChangeTip API, to be delivered immediately. """
+        assert self.channel is not None, "channel must be defined"
+        data = json.dumps({
+            "channel": self.channel,
+            "sender": sender,
+            "receiver": receiver,
+            "message": message,
+            "context_uid": context_uid,
+            "meta_json": meta,
+        })
+        response = requests.post(self.get_api_url("/tips/send_tip"), data=data, headers={'content-type': 'application/json'})
+        if response.status_code in [200, 409]:
+         "%s error submitting transaction: %s" % (response.status_code, response.content)
+        return response
+
 
     def deliver_tip_response(self, tx):
         """ Does the work to post the response to the thread on the site. Returns True or Exception """
@@ -83,21 +100,6 @@ class BaseBot(object):
     def get_api_url(self, path):
         assert self.changetip_api_key is not None, "changetip_api_key must be defined"
         return "%s%s?api_key=%s" % (CHANGECOIN_API, path, self.changetip_api_key)
-
-    def start_transaction(self, sender, receiver, message, context_uid, meta):
-        """ Send data to the changecoin API """
-        assert self.channel is not None, "channel must be defined"
-        data = json.dumps({
-            "channel": self.channel,
-            "sender": sender,
-            "receiver": receiver,
-            "message": message,
-            "context_uid": context_uid,
-            "meta_json": meta,
-        })
-        response = requests.post(self.get_api_url("/transactions/start"), data=data, headers={'content-type': 'application/json'})
-        assert response.status_code in [200, 409], "%s error submitting transaction: %s" % (response.status_code, response.content)
-        return response
 
     def get_mentions(self, message):
         """ Remove duplicates in a case-insensitive way while preserving the original order
