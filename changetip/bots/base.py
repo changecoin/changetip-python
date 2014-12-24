@@ -62,11 +62,13 @@ class BaseBot(object):
             "context_uid": context_uid,
             "meta_json": meta,
         })
-        response = requests.post(self.get_api_url("/tips/send_tip"), data=data, headers={'content-type': 'application/json'})
-        if response.status_code in [200, 409]:
-         "%s error submitting transaction: %s" % (response.status_code, response.content)
-        return response
-
+        response = requests.post(self.get_api_url("/tips/"), data=data, headers={'content-type': 'application/json'})
+        if response.headers["Content-Type"] == "application/json":
+            out = response.json()
+            out["state"] = response.reason.lower()
+            return out
+        else:
+            return {"state": response.reason.lower(), "error": "%s error submitting tip" % response.status_code}
 
     def deliver_tip_response(self, tx):
         """ Does the work to post the response to the thread on the site. Returns True or Exception """
