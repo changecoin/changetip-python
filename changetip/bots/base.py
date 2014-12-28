@@ -54,6 +54,10 @@ class BaseBot(object):
     def send_tip(self, sender, receiver, message, context_uid, meta):
         """ Send a request to the ChangeTip API, to be delivered immediately. """
         assert self.channel is not None, "channel must be defined"
+
+        # Add extra data to meta
+        meta["mention_bot"] = self.mention_bot()
+
         data = json.dumps({
             "channel": self.channel,
             "sender": sender,
