@@ -10,7 +10,6 @@ Install
 
     $ pip install changetip
 
-
 Examples
 ========
 
@@ -24,6 +23,7 @@ Examples
             # Code to check for new tips
             pass
 
+To see it in action, checkout the [ChangeTip Slack bot](https://github.com/changecoin/changetip-slack), which uses this library.
 
 Tests
 =====
@@ -41,6 +41,9 @@ To run tests:
 
 Local Development
 =================
+
+Source code - [ChangeTip Python on Github](https://github.com/changecoin/changetip-python)
+
 If you would like to post API messages locally instead of production (https://api.changetip.com/v1), you can pass the environemnt variable `CHANGECOIN_API`. For example:
 
 .. code-block:: bash
