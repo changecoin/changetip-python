@@ -21,6 +21,7 @@ class BaseBot(object):
     # The API must know about it ahead of time
     # To register a new bot, contact info@changetip.com
     changetip_api_key = None  # api key for the bot to submit transactions
+    channel = None
     username = None  # username on the site
     prefix = "@"
     last_context_uid = None
