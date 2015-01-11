@@ -23,7 +23,7 @@ class BaseBot(object):
     changetip_api_key = None  # api key for the bot to submit transactions
     username = None  # username on the site
     prefix = "@"
-    last_context_uid = None
+    last_context_uid = None # used if you need to page through your channel's tips via some "last used" identifier
     proxy = None
     # How many seconds the bot runner should wait before checking for new tips
     new_tip_check_delay = 15
@@ -49,6 +49,7 @@ class BaseBot(object):
 
     def check_for_new_tips(self, last):
         """ Poll the site for new tips. Expected to return an array of tips, in the format passed to send_tip """
+        # currently only the last_context_uid value is returned.  You can call it like: last.get("last_context_uid", 0)
         raise NotImplementedError
 
     def send_tip(self, sender, receiver, message, context_uid, meta):
