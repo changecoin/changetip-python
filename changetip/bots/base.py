@@ -66,7 +66,7 @@ class BaseBot(object):
             "receiver": receiver,
             "message": message,
             "context_uid": context_uid,
-            "meta_json": meta,
+            "meta": meta,
         })
         response = requests.post(self.get_api_url("/tips/"), data=data, headers={'content-type': 'application/json'})
         if response.headers["Content-Type"] == "application/json":
