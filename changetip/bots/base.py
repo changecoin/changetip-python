@@ -137,4 +137,5 @@ class BaseBot(object):
 
     def get_sibling_tips(self, parent_id):
         response = requests.get(self.get_api_url("/transactions"), params={"context_parent_uid": parent_id}, headers={'content-type': 'application/json'})
+        assert response.status_code == 200, "changecoin api call failed with status code: %s" % response.status_code
         return response.json()["objects"]
