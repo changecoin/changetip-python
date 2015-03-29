@@ -68,7 +68,7 @@ class BaseBot(object):
             "meta_json": meta,
         })
         response = requests.post(self.get_api_url("/tips/"), data=data, headers={'content-type': 'application/json'})
-        if response.headers["Content-Type"] == "application/json":
+        if response.headers.get("Content-Type", None) == "application/json":
             out = response.json()
             out["state"] = response.reason.lower()
             return out
