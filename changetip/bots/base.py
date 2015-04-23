@@ -26,8 +26,6 @@ class BaseBot(object):
     prefix = "@"
     last_context_uid = None # used if you need to page through your channel's tips via some "last used" identifier
     proxy = None
-    # How many seconds the bot runner should wait before checking for new tips
-    new_tip_check_delay = 15
 
     def __str__(self):
         return "%s bot with %s proxy %s" % (self.__class__.__name__, self.username, self.proxy)
@@ -47,11 +45,6 @@ class BaseBot(object):
         Should raise a DuplicateTipException if duplicate is found
         """
         return True
-
-    def check_for_new_tips(self, last):
-        """ Poll the site for new tips. Expected to return an array of tips, in the format passed to send_tip """
-        # currently only the last_context_uid value is returned.  You can call it like: last.get("last_context_uid", 0)
-        raise NotImplementedError
 
     def send_tip(self, sender, receiver, message, context_uid, meta):
         """ Send a request to the ChangeTip API, to be delivered immediately. """
