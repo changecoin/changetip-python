@@ -78,7 +78,7 @@ class BaseBot(object):
         # Often the email is enough, most bots will just pass
         pass
 
-    def invite_new_user(self, sender, **kwargs):
+    def invite_new_user(self, tx):
         """ Invite the sender to create an account on ChangeTip
         :param **kwargs:
         """
